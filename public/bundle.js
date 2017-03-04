@@ -22179,6 +22179,20 @@
 	
 	var _insertChart2 = _interopRequireDefault(_insertChart);
 	
+	var _FontIcon = __webpack_require__(/*! material-ui/FontIcon */ 408);
+	
+	var _FontIcon2 = _interopRequireDefault(_FontIcon);
+	
+	var _BottomNavigation = __webpack_require__(/*! material-ui/BottomNavigation */ 440);
+	
+	var _Paper = __webpack_require__(/*! material-ui/Paper */ 387);
+	
+	var _Paper2 = _interopRequireDefault(_Paper);
+	
+	var _locationOn = __webpack_require__(/*! material-ui/svg-icons/communication/location-on */ 443);
+	
+	var _locationOn2 = _interopRequireDefault(_locationOn);
+	
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -22332,7 +22346,8 @@
 	          _react2.default.createElement(_RaisedButton2.default, {
 	            label: 'Super Secret Password',
 	            secondary: true
-	          })
+	          }),
+	          _react2.default.createElement(_Paper2.default, { zDepth: 1 })
 	        )
 	      );
 	    }
@@ -40982,6 +40997,280 @@
 	EditorInsertChart.muiName = 'SvgIcon';
 	
 	exports.default = EditorInsertChart;
+
+/***/ },
+/* 440 */
+/*!*************************************************!*\
+  !*** ./~/material-ui/BottomNavigation/index.js ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = exports.BottomNavigationItem = exports.BottomNavigation = undefined;
+	
+	var _BottomNavigation2 = __webpack_require__(/*! ./BottomNavigation */ 441);
+	
+	var _BottomNavigation3 = _interopRequireDefault(_BottomNavigation2);
+	
+	var _BottomNavigationItem2 = __webpack_require__(/*! ./BottomNavigationItem */ 442);
+	
+	var _BottomNavigationItem3 = _interopRequireDefault(_BottomNavigationItem2);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	exports.BottomNavigation = _BottomNavigation3.default;
+	exports.BottomNavigationItem = _BottomNavigationItem3.default;
+	exports.default = _BottomNavigation3.default;
+
+/***/ },
+/* 441 */
+/*!************************************************************!*\
+  !*** ./~/material-ui/BottomNavigation/BottomNavigation.js ***!
+  \************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 360);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ 365);
+	
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+	
+	var _simpleAssign = __webpack_require__(/*! simple-assign */ 366);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	function getStyles(props, context) {
+	  var bottomNavigation = context.muiTheme.bottomNavigation;
+	
+	  var styles = {
+	    root: {
+	      position: 'relative',
+	      width: '100%',
+	      display: 'flex',
+	      justifyContent: 'center',
+	      backgroundColor: bottomNavigation.backgroundColor,
+	      height: bottomNavigation.height
+	    },
+	    item: {
+	      flex: '1'
+	    }
+	  };
+	
+	  return styles;
+	}
+	
+	var BottomNavigation = function BottomNavigation(props, context) {
+	  var children = props.children,
+	      style = props.style,
+	      selectedIndex = props.selectedIndex,
+	      other = (0, _objectWithoutProperties3.default)(props, ['children', 'style', 'selectedIndex']);
+	  var prepareStyles = context.muiTheme.prepareStyles;
+	
+	  var styles = getStyles(props, context);
+	
+	  var preparedChildren = _react.Children.map(children, function (child, index) {
+	    return (0, _react.cloneElement)(child, {
+	      style: (0, _simpleAssign2.default)({}, styles.item, child.props.style),
+	      selected: index === selectedIndex
+	    });
+	  });
+	
+	  return _react2.default.createElement('div', (0, _extends3.default)({}, other, { style: prepareStyles((0, _simpleAssign2.default)({}, styles.root, style)) }), preparedChildren);
+	};
+	
+	process.env.NODE_ENV !== "production" ? BottomNavigation.propTypes = {
+	  /**
+	   * The `BottomNavigationItem`s to populate the element with.
+	   */
+	  children: _react.PropTypes.node,
+	  /**
+	   * The index of the currently selected navigation item.
+	   */
+	  selectedIndex: _react.PropTypes.number,
+	  /**
+	   * @ignore
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object
+	} : void 0;
+	
+	BottomNavigation.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	
+	exports.default = BottomNavigation;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
+
+/***/ },
+/* 442 */
+/*!****************************************************************!*\
+  !*** ./~/material-ui/BottomNavigation/BottomNavigationItem.js ***!
+  \****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends2 = __webpack_require__(/*! babel-runtime/helpers/extends */ 360);
+	
+	var _extends3 = _interopRequireDefault(_extends2);
+	
+	var _objectWithoutProperties2 = __webpack_require__(/*! babel-runtime/helpers/objectWithoutProperties */ 365);
+	
+	var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+	
+	var _simpleAssign = __webpack_require__(/*! simple-assign */ 366);
+	
+	var _simpleAssign2 = _interopRequireDefault(_simpleAssign);
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _EnhancedButton = __webpack_require__(/*! ../internal/EnhancedButton */ 371);
+	
+	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	function getStyles(props, context) {
+	  var selected = props.selected;
+	  var bottomNavigation = context.muiTheme.bottomNavigation;
+	
+	  var color = selected ? bottomNavigation.selectedColor : bottomNavigation.unselectedColor;
+	
+	  var styles = {
+	    root: {
+	      transition: 'padding-top 0.3s',
+	      paddingTop: selected ? 6 : 8,
+	      paddingBottom: 10,
+	      paddingLeft: 12,
+	      paddingRight: 12,
+	      minWidth: 80,
+	      maxWidth: 168
+	    },
+	    label: {
+	      fontSize: selected ? bottomNavigation.selectedFontSize : bottomNavigation.unselectedFontSize,
+	      transition: 'color 0.3s, font-size 0.3s',
+	      color: color
+	    },
+	    icon: {
+	      display: 'block',
+	      /**
+	       * Used to ensure SVG icons are centered
+	       */
+	      width: '100%'
+	    },
+	    iconColor: color
+	  };
+	
+	  return styles;
+	}
+	
+	var BottomNavigationItem = function BottomNavigationItem(props, context) {
+	  var label = props.label,
+	      icon = props.icon,
+	      style = props.style,
+	      other = (0, _objectWithoutProperties3.default)(props, ['label', 'icon', 'style']);
+	  var prepareStyles = context.muiTheme.prepareStyles;
+	
+	  var styles = getStyles(props, context);
+	
+	  var styledIcon = (0, _react.cloneElement)(icon, {
+	    style: (0, _simpleAssign2.default)({}, styles.icon, icon.props.style),
+	    color: icon.props.color || styles.iconColor
+	  });
+	
+	  return _react2.default.createElement(_EnhancedButton2.default, (0, _extends3.default)({}, other, { style: (0, _simpleAssign2.default)({}, styles.root, style) }), styledIcon, _react2.default.createElement('div', { style: prepareStyles(styles.label) }, label));
+	};
+	
+	process.env.NODE_ENV !== "production" ? BottomNavigationItem.propTypes = {
+	  /**
+	   * Set the icon representing the view for this item.
+	   */
+	  icon: _react.PropTypes.node,
+	  /**
+	   * Set the label describing the view for this item.
+	   */
+	  label: _react.PropTypes.node,
+	  /**
+	   * @ignore
+	   * Override the inline-styles of the root element.
+	   */
+	  style: _react.PropTypes.object
+	} : void 0;
+	
+	BottomNavigationItem.contextTypes = {
+	  muiTheme: _react.PropTypes.object.isRequired
+	};
+	
+	exports.default = BottomNavigationItem;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
+
+/***/ },
+/* 443 */
+/*!**************************************************************!*\
+  !*** ./~/material-ui/svg-icons/communication/location-on.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _pure = __webpack_require__(/*! recompose/pure */ 412);
+	
+	var _pure2 = _interopRequireDefault(_pure);
+	
+	var _SvgIcon = __webpack_require__(/*! ../../SvgIcon */ 421);
+	
+	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	var CommunicationLocationOn = function CommunicationLocationOn(props) {
+	  return _react2.default.createElement(_SvgIcon2.default, props, _react2.default.createElement('path', { d: 'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z' }));
+	};
+	CommunicationLocationOn = (0, _pure2.default)(CommunicationLocationOn);
+	CommunicationLocationOn.displayName = 'CommunicationLocationOn';
+	CommunicationLocationOn.muiName = 'SvgIcon';
+	
+	exports.default = CommunicationLocationOn;
 
 /***/ }
 /******/ ]);

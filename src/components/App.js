@@ -22,6 +22,10 @@ import FileFolder from 'material-ui/svg-icons/file/folder';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import {blue500, yellow600} from 'material-ui/styles/colors';
 import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
+import FontIcon from 'material-ui/FontIcon';
+import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
+import Paper from 'material-ui/Paper';
+import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 //for simple routing
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -44,6 +48,7 @@ const muiTheme = getMuiTheme({
   },
   userAgent: 'all',
 });
+
 
 
 class App extends React.Component {
@@ -163,6 +168,10 @@ class App extends React.Component {
             label="Super Secret Password"
             secondary={true}
           />
+
+           <Paper zDepth={1}>
+
+      </Paper>
       </div>
 
       </MuiThemeProvider>
