@@ -11,6 +11,7 @@ A simple app with MERN - MongoDB,Express,ReactJS,Node
 <img src="dev_process/cap1.PNG">
 <img src="dev_process/cap2.PNG">
 <img src="dev_process/cap3.PNG">
+<img src="dev_process/cap1.PNG">
 
 ## Built intergrated with 
 + https://github.com/Hashnode/mern-starter
