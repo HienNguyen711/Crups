@@ -2,7 +2,16 @@ import React from 'react';
 import Header from './Header';
 import axios from 'axios';
 import BookPreview from './BookPreview';
+import * as api from '../api';
+import BookList from './BookList';
+import Book from './Book';
+//for simple routing
+const pushState = (obj, url) =>
+  window.history.pushState(obj, '', url);
 
+const onPopState = handler => {
+  window.onpopstate = handler;
+};
 class App extends React.Component {
   state = {
     pageHeader: 'Crups',
