@@ -23860,7 +23860,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchBookList = exports.fetchBook = undefined;
+	exports.addReader = exports.fetchReaders = exports.fetchBookList = exports.fetchBook = undefined;
 	
 	var _axios = __webpack_require__(/*! axios */ 180);
 	
@@ -23877,6 +23877,18 @@
 	var fetchBookList = exports.fetchBookList = function fetchBookList() {
 	  return _axios2.default.get('/api/books').then(function (resp) {
 	    return resp.data.books;
+	  });
+	};
+	
+	var fetchReaders = exports.fetchReaders = function fetchReaders(readerIds) {
+	  return _axios2.default.get('/api/readers/' + readerIds.join(',')).then(function (resp) {
+	    return resp.data.readers;
+	  });
+	};
+	
+	var addReader = exports.addReader = function addReader(newReader, bookId) {
+	  return _axios2.default.post('/api/readers', { newReader: newReader, bookId: bookId }).then(function (resp) {
+	    return resp.data;
 	  });
 	};
 
