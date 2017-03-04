@@ -9,16 +9,7 @@ class App extends React.Component {
     books:[]
   };
   componentDidMount() {
-    // timers, listeners, ajax call
-     axios.get('/api/books')
-      .then(resp => {
-        this.setState({
-          books: resp.data.books
-        });
-      })
-      .catch((err) => {
-       console.error(err);
-     });
+
   }
   componentWillUnmount() {
     // clean timers, listeners

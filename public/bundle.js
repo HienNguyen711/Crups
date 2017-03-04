@@ -63,7 +63,7 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { initialContests: window.initialData.books }), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -22135,18 +22135,7 @@
 	
 	  _createClass(App, [{
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      // timers, listeners, ajax call
-	      _axios2.default.get('/api/books').then(function (resp) {
-	        _this2.setState({
-	          books: resp.data.books
-	        });
-	      }).catch(function (err) {
-	        console.error(err);
-	      });
-	    }
+	    value: function componentDidMount() {}
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
