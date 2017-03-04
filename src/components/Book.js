@@ -4,8 +4,8 @@ class Book extends Component {
   componentDidMount() {
     this.props.fetchReaders(this.props.readerIds);
   }
-  handleSubmit = (e) => {
-    e.preventDefault();
+  handleSubmit = (event) => {
+    event.preventDefault();
     this.props.addReader(this.refs.newReaderInput.value, this.props._id);
     this.refs.newReaderInput.value = '';
   };
@@ -31,7 +31,7 @@ class Book extends Component {
             <ul className="list-group">
               {this.props.readerIds.map(readerId =>
                 <li key={readerId} className="list-group-item">
-                  {this.props.lookupReader(readerId).reader}
+                  {this.props.lookupReader(readerId).name}
                 </li>
               )}
             </ul>
@@ -47,7 +47,7 @@ class Book extends Component {
               <div className="input-group">
                 <input type="text"
                    placeholder="New Reader Here..."
-                   ref="newReaederInput"
+                   ref="newReaderInput"
                    className="form-control" />
                 <span className="input-group-btn">
                   <button type="submit" className="btn btn-info">

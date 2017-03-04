@@ -5,6 +5,12 @@ import BookPreview from './BookPreview';
 import * as api from '../api';
 import BookList from './BookList';
 import Book from './Book';
+import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
+import {deepOrange500} from 'material-ui/styles/colors';
+import FlatButton from 'material-ui/FlatButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 //for simple routing
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -12,9 +18,24 @@ const pushState = (obj, url) =>
 const onPopState = handler => {
   window.onpopstate = handler;
 };
+
+//mui
+const styles = {
+  container: {
+    textAlign: 'center',
+    paddingTop: 200,
+  },
+};
+
+
+
+
+@themeDecorator(getMuiTheme(null, { userAgent: 'all' }))
 class App extends React.Component {
    static propTypes = {
-    initialData: React.PropTypes.object.isRequired
+    initialData: React.PropTypes.object.isRequired,
+    children: React.PropTypes.node.isRequired
+
   };
   state = this.props.initialData;
   componentDidMount() {
@@ -85,7 +106,7 @@ class App extends React.Component {
     return this.state.readers[readerId];
   };
   addReader = (newReader, bookId) => {
-    api.addName(newReader, bookId).then(resp =>
+    api.addReader(newReader, bookId).then(resp =>
       this.setState({
         books: {
           ...this.state.books,
@@ -115,10 +136,16 @@ class App extends React.Component {
   }
   render() {
     return (
+      <MuiThemeProvider muiTheme={muiTheme}>
       <div className="App">
         <Header message={this.pageHeader()} />
         {this.currentContent()}
       </div>
+      <RaisedButton
+            label="Super Secret Password"
+            secondary={true}
+          />
+      </MuiThemeProvider>
     );
   }
 }
