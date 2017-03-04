@@ -24219,7 +24219,7 @@
 	          null,
 	          this.props.readerIds.map(function (readerId) {
 	            return _react2.default.createElement(_List.ListItem, { key: readerId,
-	              primaryText: '{this.props.lookupReader(readerId).name}',
+	              primaryText: _this2.props.lookupReader(readerId).name,
 	              leftAvatar: _react2.default.createElement(_Avatar2.default, { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2000px-Octicons-mark-github.svg.png' }),
 	              rightIcon: _react2.default.createElement(_chatBubble2.default, null)
 	            });

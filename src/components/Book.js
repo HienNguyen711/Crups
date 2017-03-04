@@ -51,10 +51,11 @@ class Book extends Component {
 
        {this.props.readerIds.map(readerId =>
         <ListItem key={readerId}
-        primaryText="{this.props.lookupReader(readerId).name}"
+        primaryText={this.props.lookupReader(readerId).name}
         leftAvatar={<Avatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2000px-Octicons-mark-github.svg.png" />}
         rightIcon={<CommunicationChatBubble />}
-      /> )}
+        />
+       )}
 
 
 
