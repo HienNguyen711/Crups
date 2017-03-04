@@ -11,6 +11,17 @@ import {deepOrange500} from 'material-ui/styles/colors';
 import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import AppBar from 'material-ui/AppBar';
+import {List, ListItem} from 'material-ui/List';
+import ActionInfo from 'material-ui/svg-icons/action/info';
+import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import Avatar from 'material-ui/Avatar';
+import FileFolder from 'material-ui/svg-icons/file/folder';
+import ActionAssignment from 'material-ui/svg-icons/action/assignment';
+import {blue500, yellow600} from 'material-ui/styles/colors';
+import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 //for simple routing
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
@@ -27,10 +38,14 @@ const styles = {
   },
 };
 
+const muiTheme = getMuiTheme({
+  palette: {
+    accent1Color: deepOrange500,
+  },
+  userAgent: 'all',
+});
 
 
-
-@themeDecorator(getMuiTheme(null, { userAgent: 'all' }))
 class App extends React.Component {
    static propTypes = {
     initialData: React.PropTypes.object.isRequired,
@@ -136,15 +151,20 @@ class App extends React.Component {
   }
   render() {
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+
       <div className="App">
+        <AppBar title="Welcome to Crups - The Book List" />
         <Header message={this.pageHeader()} />
+
         {this.currentContent()}
-      </div>
-      <RaisedButton
+
+          <RaisedButton
             label="Super Secret Password"
             secondary={true}
           />
+      </div>
+
       </MuiThemeProvider>
     );
   }
