@@ -27,7 +27,7 @@ It enables you to analyse data that were not previously possible. The volume, va
     description: `
 Web design for web developers
     `,
-      nameIds: [] }
+      readerIds: [] }
   ]).then(response => {
     console.info('books', response.insertedCount);
     db.collection('readers').insertMany([
