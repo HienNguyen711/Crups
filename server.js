@@ -16,17 +16,18 @@ server.use(sassMiddleware({
 //set ejs view
 server.set('view engine', 'ejs');
 
-server.get('/',(req,res) => {
-  serverRender()
+server.get(['/', '/book/:bookId'], (req, res) => {
+  serverRender(req.params.bookId)
     .then(({ initialMarkup, initialData }) => {
       res.render('index', {
         initialMarkup,
         initialData
       });
     })
-    .catch((err) => {
-      console.error(err);
-  });
+    .catch(error => {
+      console.error(error);
+      res.status(404).send('Bad Request');
+    });
 });
 
 server.use('/api', apiRouter);
