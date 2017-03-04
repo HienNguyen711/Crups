@@ -20,7 +20,7 @@ server.get('/',(req,res) => {
   });
 });
 
-
+server.use('/api', apiRouter);
 
 server.listen(config.port, config.host, () => {
   console.info(`Running on port ${config.port}`);

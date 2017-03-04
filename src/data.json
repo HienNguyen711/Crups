@@ -1,0 +1,24 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "categoryName": "Front-end",
+      "bookName": "Pro React"
+    },
+    {
+      "id": 2,
+      "categoryName": "Fullstack",
+      "bookName": "MEAN and MERN stack"
+    },
+    {
+      "id": 3,
+      "categoryName": "Back-end",
+      "bookName": "Big Data Analytics for Cash Circulation"
+    },
+    {
+      "id": 4,
+      "categoryName": "UX/UI",
+      "bookName": "The art of web design"
+    }
+  ]
+}
