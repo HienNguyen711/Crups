@@ -6,14 +6,48 @@ import App from './src/components/App';
 import config from './config';
 import axios from 'axios';
 
-const serverRender = () =>
-  axios.get(`${config.serverUrl}/api/books`)
+
+const getApiUrl = bookId => {
+  if(bookId) {
+    return `${config.serverUrl}/api/books/${bookId}`;
+  }
+  else {
+    return `${config.serverUrl}/api/books`;
+  }
+};
+
+
+
+
+const getInitialData = (bookId, apiData) => {
+  if (bookId) {
+    return {
+      currentBookId: apiData.id,
+      books: {
+        [apiData.id]: apiData
+      }
+    };
+  }
+  return {
+    books: apiData.books
+  };
+};
+
+
+
+
+
+
+
+const serverRender = (bookId) =>
+  axios.get(getApiUrl(bookId))
     .then(resp => {
+      const initialData = getInitialData(bookId, resp.data);
       return {
         initialMarkup: ReactDOMServer.renderToString(
-          <App initialBooks={resp.data.books} />
+          <App initialData={initialData} />
         ),
-        initialData: resp.data
+        initialData
       };
     });
 
