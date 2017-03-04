@@ -22101,7 +22101,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _BookPreview = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./BookPreview\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _BookPreview = __webpack_require__(/*! ./BookPreview */ 205);
 	
 	var _BookPreview2 = _interopRequireDefault(_BookPreview);
 	
@@ -23771,7 +23771,84 @@
 	};
 
 /***/ },
-/* 205 */,
+/* 205 */
+/*!***************************************!*\
+  !*** ./src/components/BookPreview.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var BookPreview = function (_Component) {
+	  _inherits(BookPreview, _Component);
+	
+	  function BookPreview() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, BookPreview);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BookPreview.__proto__ || Object.getPrototypeOf(BookPreview)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
+	      _this.props.onClick(_this.props.id);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(BookPreview, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "link BookPreview", onClick: this.handleClick },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "category-name" },
+	          this.props.categoryName
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "book-name" },
+	          this.props.bookName
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return BookPreview;
+	}(_react.Component);
+	
+	BookPreview.propTypes = {
+	  id: _react2.default.PropTypes.number.isRequired,
+	  categoryName: _react2.default.PropTypes.string.isRequired,
+	  bookName: _react2.default.PropTypes.string.isRequired,
+	  onClick: _react2.default.PropTypes.func.isRequired
+	};
+	
+	exports.default = BookPreview;
+
+/***/ },
 /* 206 */
 /*!********************!*\
   !*** ./src/api.js ***!
@@ -23783,7 +23860,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchContestList = exports.fetchBook = undefined;
+	exports.fetchBookList = exports.fetchBook = undefined;
 	
 	var _axios = __webpack_require__(/*! axios */ 180);
 	
@@ -23797,7 +23874,7 @@
 	  });
 	};
 	
-	var fetchContestList = exports.fetchContestList = function fetchContestList() {
+	var fetchBookList = exports.fetchBookList = function fetchBookList() {
 	  return _axios2.default.get('/api/books').then(function (resp) {
 	    return resp.data.books;
 	  });
@@ -23822,7 +23899,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _BookPreview = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./BookPreview\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _BookPreview = __webpack_require__(/*! ./BookPreview */ 205);
 	
 	var _BookPreview2 = _interopRequireDefault(_BookPreview);
 	
@@ -23915,7 +23992,7 @@
 	  bookListClick: _react.PropTypes.func.isRequired
 	};
 	
-	exports.default = Contest;
+	exports.default = Book;
 
 /***/ }
 /******/ ]);

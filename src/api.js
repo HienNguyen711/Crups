@@ -5,7 +5,7 @@ export const fetchBook = bookId => {
               .then(resp => resp.data);
 };
 
-export const fetchContestList = () => {
+export const fetchBookList = () => {
   return axios.get('/api/books')
               .then(resp => resp.data.books);
 };

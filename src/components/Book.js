@@ -21,4 +21,4 @@ Book.propTypes = {
   bookListClick: PropTypes.func.isRequired,
 };
 
-export default Contest;
+export default Book;

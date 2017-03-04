@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BookPreview extends Component{
+class BookPreview extends Component{
   handleClick = () => {
     this.props.onClick(this.props.id);
   };
