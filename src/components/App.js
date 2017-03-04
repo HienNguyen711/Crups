@@ -38,7 +38,7 @@ class App extends React.Component {
         currentBookId: book.id,
         books: {
           ...this.state.books,
-          [book.id]: book
+          [book._id]: book
         }
       });
     });
@@ -55,6 +55,16 @@ class App extends React.Component {
       });
     });
   };
+  fetchReaders = (readerIds) => {
+    if (readerIds.length === 0) {
+      return;
+    }
+    api.fetchReaders(readerIds).then(readers => {
+      this.setState({
+        readers
+      });
+    });
+  };
   currentBook() {
     return this.state.books[this.state.currentBookId];
   }
@@ -65,10 +75,37 @@ class App extends React.Component {
 
     return 'Book List';
   }
+
+ lookupReader = (readerId) => {
+    if (!this.state.readers || !this.state.readers[readerId]) {
+      return {
+        reader: '...'
+      };
+    }
+    return this.state.readers[readerId];
+  };
+  addReader = (newReader, bookId) => {
+    api.addName(newReader, bookId).then(resp =>
+      this.setState({
+        books: {
+          ...this.state.books,
+          [resp.updatedBook._id]: resp.updatedBook
+        },
+        readers: {
+          ...this.state.readers,
+          [resp.newReader._id]: resp.newReader
+        }
+      })
+    )
+    .catch(console.error);
+  };
   currentContent() {
     if (this.state.currentBookId) {
       return <Book
                bookListClick={this.fetchBookList}
+               fetchReaders={this.fetchReaders}
+               lookupReader={this.lookupReader}
+               addReader={this.addReader}
                {...this.currentBook()} />;
     }
 

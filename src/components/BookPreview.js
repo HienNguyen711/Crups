@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class BookPreview extends Component{
   handleClick = () => {
-    this.props.onClick(this.props.id);
+    this.props.onClick(this.props._id);
   };
    render() {
     return (
@@ -19,7 +19,7 @@ class BookPreview extends Component{
 }
 
 BookPreview.propTypes = {
-  id: React.PropTypes.number.isRequired,
+  _id: React.PropTypes.number.isRequired,
   categoryName: React.PropTypes.string.isRequired,
   bookName: React.PropTypes.string.isRequired,
   onClick: React.PropTypes.func.isRequired,

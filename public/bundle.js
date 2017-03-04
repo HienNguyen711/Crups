@@ -22157,7 +22157,7 @@
 	      api.fetchBook(bookId).then(function (book) {
 	        _this.setState({
 	          currentBookId: book.id,
-	          books: _extends({}, _this.state.books, _defineProperty({}, book.id, book))
+	          books: _extends({}, _this.state.books, _defineProperty({}, book._id, book))
 	        });
 	      });
 	    }, _this.fetchBookList = function () {
@@ -22168,6 +22168,29 @@
 	          books: books
 	        });
 	      });
+	    }, _this.fetchReaders = function (readerIds) {
+	      if (readerIds.length === 0) {
+	        return;
+	      }
+	      api.fetchReaders(readerIds).then(function (readers) {
+	        _this.setState({
+	          readers: readers
+	        });
+	      });
+	    }, _this.lookupReader = function (readerId) {
+	      if (!_this.state.readers || !_this.state.readers[readerId]) {
+	        return {
+	          reader: '...'
+	        };
+	      }
+	      return _this.state.readers[readerId];
+	    }, _this.addReader = function (newReader, bookId) {
+	      api.addName(newReader, bookId).then(function (resp) {
+	        return _this.setState({
+	          books: _extends({}, _this.state.books, _defineProperty({}, resp.updatedBook._id, resp.updatedBook)),
+	          readers: _extends({}, _this.state.readers, _defineProperty({}, resp.newReader._id, resp.newReader))
+	        });
+	      }).catch(console.error);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -22206,7 +22229,10 @@
 	    value: function currentContent() {
 	      if (this.state.currentBookId) {
 	        return _react2.default.createElement(_Book2.default, _extends({
-	          bookListClick: this.fetchBookList
+	          bookListClick: this.fetchBookList,
+	          fetchReaders: this.fetchReaders,
+	          lookupReader: this.lookupReader,
+	          addReader: this.addReader
 	        }, this.currentBook()));
 	      }
 	
@@ -23812,7 +23838,7 @@
 	    }
 	
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BookPreview.__proto__ || Object.getPrototypeOf(BookPreview)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
-	      _this.props.onClick(_this.props.id);
+	      _this.props.onClick(_this.props._id);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -23840,7 +23866,7 @@
 	}(_react.Component);
 	
 	BookPreview.propTypes = {
-	  id: _react2.default.PropTypes.number.isRequired,
+	  _id: _react2.default.PropTypes.number.isRequired,
 	  categoryName: _react2.default.PropTypes.string.isRequired,
 	  bookName: _react2.default.PropTypes.string.isRequired,
 	  onClick: _react2.default.PropTypes.func.isRequired
@@ -23946,7 +23972,7 @@
   \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -23970,27 +23996,129 @@
 	  _inherits(Book, _Component);
 	
 	  function Book() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
 	    _classCallCheck(this, Book);
 	
-	    return _possibleConstructorReturn(this, (Book.__proto__ || Object.getPrototypeOf(Book)).apply(this, arguments));
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Book.__proto__ || Object.getPrototypeOf(Book)).call.apply(_ref, [this].concat(args))), _this), _this.handleSubmit = function (e) {
+	      e.preventDefault();
+	      _this.props.addReader(_this.refs.newReaderInput.value, _this.props._id);
+	      _this.refs.newReaderInput.value = '';
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
 	  _createClass(Book, [{
-	    key: "render",
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.fetchReaders(this.props.readerIds);
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+	
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "Book" },
+	        'div',
+	        { className: 'Book' },
 	        _react2.default.createElement(
-	          "div",
-	          { className: "book-description" },
-	          this.props.description
+	          'div',
+	          { className: 'panel panel-default' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-heading' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'panel-title' },
+	              'Book description'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-body' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'book-description' },
+	              this.props.description
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "home-link link",
+	          'div',
+	          { className: 'panel panel-default' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-heading' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'panel-title' },
+	              'Proposed Readers'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-body' },
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'list-group' },
+	              this.props.readerIds.map(function (readerId) {
+	                return _react2.default.createElement(
+	                  'li',
+	                  { key: readerId, className: 'list-group-item' },
+	                  _this2.props.lookupReader(readerId).reader
+	                );
+	              })
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'panel panel-info' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-heading' },
+	            _react2.default.createElement(
+	              'h3',
+	              { className: 'panel-title' },
+	              'Propose a New Reader'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'panel-body' },
+	            _react2.default.createElement(
+	              'form',
+	              { onSubmit: this.handleSubmit },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'input-group' },
+	                _react2.default.createElement('input', { type: 'text',
+	                  placeholder: 'New Reader Here...',
+	                  ref: 'newReaederInput',
+	                  className: 'form-control' }),
+	                _react2.default.createElement(
+	                  'span',
+	                  { className: 'input-group-btn' },
+	                  _react2.default.createElement(
+	                    'button',
+	                    { type: 'submit', className: 'btn btn-info' },
+	                    'Sumbit'
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'home-link link',
 	            onClick: this.props.bookListClick },
-	          "Back to Book List"
+	          'Return back Book List'
 	        )
 	      );
 	    }
@@ -24000,8 +24128,13 @@
 	}(_react.Component);
 	
 	Book.propTypes = {
+	  _id: _react.PropTypes.string.isRequired,
 	  description: _react.PropTypes.string.isRequired,
-	  bookListClick: _react.PropTypes.func.isRequired
+	  bookListClick: _react.PropTypes.func.isRequired,
+	  fetchReaders: _react.PropTypes.func.isRequired,
+	  readerIds: _react.PropTypes.array.isRequired,
+	  lookupReader: _react.PropTypes.func.isRequired,
+	  addReader: _react.PropTypes.func.isRequired
 	};
 	
 	exports.default = Book;
