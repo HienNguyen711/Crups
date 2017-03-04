@@ -22121,6 +22121,8 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -22150,19 +22152,67 @@
 	      args[_key] = arguments[_key];
 	    }
 	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      pageHeader: 'Crups',
-	      books: _this.props.initialBooks
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = _this.props.initialData, _this.fetchBook = function (bookId) {
+	      pushState({ currentBookId: bookId }, '/book/' + bookId);
+	      api.fetchBook(bookId).then(function (book) {
+	        _this.setState({
+	          currentBookId: book.id,
+	          books: _extends({}, _this.state.books, _defineProperty({}, book.id, book))
+	        });
+	      });
+	    }, _this.fetchBookList = function () {
+	      pushState({ currentBookId: null }, '/');
+	      api.fetchBookList().then(function (books) {
+	        _this.setState({
+	          currentBookId: null,
+	          books: books
+	        });
+	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
 	  _createClass(App, [{
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {}
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      onPopState(function (event) {
+	        _this2.setState({
+	          currentBookId: (event.state || {}).currentBookId
+	        });
+	      });
+	    }
 	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
-	      // clean timers, listeners
+	      onPopState(null);
+	    }
+	  }, {
+	    key: 'currentBook',
+	    value: function currentBook() {
+	      return this.state.books[this.state.currentBookId];
+	    }
+	  }, {
+	    key: 'pageHeader',
+	    value: function pageHeader() {
+	      if (this.state.currentBookId) {
+	        return this.currentBook().bookName;
+	      }
+	
+	      return 'Book List';
+	    }
+	  }, {
+	    key: 'currentContent',
+	    value: function currentContent() {
+	      if (this.state.currentBookId) {
+	        return _react2.default.createElement(_Book2.default, _extends({
+	          bookListClick: this.fetchBookList
+	        }, this.currentBook()));
+	      }
+	
+	      return _react2.default.createElement(_BookList2.default, {
+	        onBookClick: this.fetchBook,
+	        books: this.state.books });
 	    }
 	  }, {
 	    key: 'render',
@@ -22170,14 +22220,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
-	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.state.books.map(function (book) {
-	            return _react2.default.createElement(_BookPreview2.default, _extends({ key: book.id }, book));
-	          })
-	        )
+	        _react2.default.createElement(_Header2.default, { message: this.pageHeader() }),
+	        this.currentContent()
 	      );
 	    }
 	  }]);
@@ -22185,6 +22229,9 @@
 	  return App;
 	}(_react2.default.Component);
 	
+	App.propTypes = {
+	  initialData: _react2.default.PropTypes.object.isRequired
+	};
 	exports.default = App;
 
 /***/ },

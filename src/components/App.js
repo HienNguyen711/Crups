@@ -13,28 +13,74 @@ const onPopState = handler => {
   window.onpopstate = handler;
 };
 class App extends React.Component {
-  state = {
-    pageHeader: 'Crups',
-    books:this.props.initialBooks
+   static propTypes = {
+    initialData: React.PropTypes.object.isRequired
   };
+  state = this.props.initialData;
   componentDidMount() {
-
+    onPopState((event) => {
+      this.setState({
+        currentBookId: (event.state || {}).currentBookId
+      });
+    });
   }
   componentWillUnmount() {
-    // clean timers, listeners
+    onPopState(null);
   }
 
+  fetchBook = (bookId) => {
+    pushState(
+      { currentBookId: bookId },
+      `/book/${bookId}`
+    );
+    api.fetchBook(bookId).then(book => {
+      this.setState({
+        currentBookId: book.id,
+        books: {
+          ...this.state.books,
+          [book.id]: book
+        }
+      });
+    });
+  };
+  fetchBookList = () => {
+    pushState(
+      { currentBookId: null },
+      '/'
+    );
+    api.fetchBookList().then(books => {
+      this.setState({
+        currentBookId: null,
+        books
+      });
+    });
+  };
+  currentBook() {
+    return this.state.books[this.state.currentBookId];
+  }
+  pageHeader() {
+    if (this.state.currentBookId) {
+      return this.currentBook().bookName;
+    }
 
+    return 'Book List';
+  }
+  currentContent() {
+    if (this.state.currentBookId) {
+      return <Book
+               bookListClick={this.fetchBookList}
+               {...this.currentBook()} />;
+    }
 
-   render() {
+    return <BookList
+            onBookClick={this.fetchBook}
+            books={this.state.books} />;
+  }
+  render() {
     return (
       <div className="App">
-        <Header message={this.state.pageHeader} />
-         <div>
-          {this.state.books.map(book =>
-            <BookPreview key={book.id} {...book} />
-          )}
-        </div>
+        <Header message={this.pageHeader()} />
+        {this.currentContent()}
       </div>
     );
   }
