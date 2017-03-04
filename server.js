@@ -4,6 +4,7 @@ import path from 'path';
 import apiRouter from './api';
 import express from 'express';
 import bodyParser from 'body-parser';
+import serverRender from './serverRender';
 
 const server = express();
 server.use(bodyParser.json());
@@ -16,8 +17,15 @@ server.use(sassMiddleware({
 server.set('view engine', 'ejs');
 
 server.get('/',(req,res) => {
-  res.render('index',{
-    content:'Some thing goes here ... '
+  serverRender()
+    .then(({ initialMarkup, initialData }) => {
+      res.render('index', {
+        initialMarkup,
+        initialData
+      });
+    })
+    .catch((err) => {
+      console.error(err);
   });
 });
 
