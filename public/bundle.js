@@ -22101,7 +22101,7 @@
 	
 	var _axios2 = _interopRequireDefault(_axios);
 	
-	var _BookPreview = __webpack_require__(/*! ./BookPreview */ 205);
+	var _BookPreview = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./BookPreview\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 	
 	var _BookPreview2 = _interopRequireDefault(_BookPreview);
 	
@@ -23699,44 +23699,6 @@
 	    return callback.apply(null, arr);
 	  };
 	};
-
-/***/ },
-/* 205 */
-/*!***************************************!*\
-  !*** ./src/components/BookPreview.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var BookPreview = function BookPreview(book) {
-	  return _react2.default.createElement(
-	    "div",
-	    { className: "BookPreview" },
-	    _react2.default.createElement(
-	      "div",
-	      { className: "category-name" },
-	      book.categoryName
-	    ),
-	    _react2.default.createElement(
-	      "div",
-	      { className: "book-name" },
-	      book.bookName
-	    )
-	  );
-	};
-	
-	exports.default = BookPreview;
 
 /***/ }
 /******/ ]);

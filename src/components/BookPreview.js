@@ -1,14 +1,28 @@
 import React from 'react';
 
-const BookPreview = (book) => (
-  <div className="BookPreview">
-    <div className="category-name">
-      {book.categoryName}
-    </div>
-    <div className="book-name">
-      {book.bookName}
-    </div>
-  </div>
-);
+const BookPreview extends Component{
+  handleClick = () => {
+    this.props.onClick(this.props.id);
+  };
+   render() {
+    return (
+      <div className="link BookPreview" onClick={this.handleClick}>
+        <div className="category-name">
+          {this.props.categoryName}
+        </div>
+        <div className="book-name">
+          {this.props.bookName}
+        </div>
+      </div>
+    );
+  }
+}
+
+BookPreview.propTypes = {
+  id: React.PropTypes.number.isRequired,
+  categoryName: React.PropTypes.string.isRequired,
+  bookName: React.PropTypes.string.isRequired,
+  onClick: React.PropTypes.func.isRequired,
+};
 
 export default BookPreview;
