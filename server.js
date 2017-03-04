@@ -1,6 +1,7 @@
 import config from './config';
 import sassMiddleware from 'node-sass-middleware';
 import path from 'path';
+import apiRouter from './api';
 import express from 'express';
 import bodyParser from 'body-parser';
 

@@ -22141,7 +22141,7 @@
 	      // timers, listeners, ajax call
 	      _axios2.default.get('/api/books').then(function (resp) {
 	        _this2.setState({
-	          books: resp.data.contests
+	          books: resp.data.books
 	        });
 	      }).catch(function (err) {
 	        console.error(err);

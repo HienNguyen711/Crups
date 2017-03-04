@@ -13,7 +13,7 @@ class App extends React.Component {
      axios.get('/api/books')
       .then(resp => {
         this.setState({
-          books: resp.data.contests
+          books: resp.data.books
         });
       })
       .catch((err) => {
