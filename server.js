@@ -6,8 +6,18 @@ import bodyParser from 'body-parser';
 
 const server = express();
 server.use(bodyParser.json());
-
+server.use(express.static('public'));
 server.use(sassMiddleware({
   src: path.join(__dirname, 'sass'),
   dest: path.join(__dirname, 'public')
 }));
+//set ejs view
+server.set('view engine', 'ejs');
+
+server.get('/',(req,res) => {
+  res.send('Hello world!');
+});
+
+server.listen(config.port, config.host, () => {
+  console.info(`Running on port ${config.port}`);
+});
