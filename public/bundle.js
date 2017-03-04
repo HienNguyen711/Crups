@@ -24111,8 +24111,6 @@
 	
 	var _AppBar2 = _interopRequireDefault(_AppBar);
 	
-	var _List = __webpack_require__(/*! material-ui/List */ 423);
-	
 	var _info = __webpack_require__(/*! material-ui/svg-icons/action/info */ 432);
 	
 	var _info2 = _interopRequireDefault(_info);
@@ -24150,6 +24148,12 @@
 	var _FlatButton = __webpack_require__(/*! material-ui/FlatButton */ 400);
 	
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
+	
+	var _List = __webpack_require__(/*! material-ui/List */ 423);
+	
+	var _chatBubble = __webpack_require__(/*! material-ui/svg-icons/communication/chat-bubble */ 454);
+	
+	var _chatBubble2 = _interopRequireDefault(_chatBubble);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -24197,36 +24201,29 @@
 	          _Card.Card,
 	          null,
 	          _react2.default.createElement(
-	            'div',
-	            { className: 'panel panel-default' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'panel-heading' },
-	              _react2.default.createElement(
-	                'h3',
-	                { className: 'panel-title' },
-	                'Book description'
-	              )
-	            ),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'panel-body' },
-	              _react2.default.createElement('div', { className: 'book-description' })
-	            )
-	          ),
-	          _react2.default.createElement(
 	            _Card.CardMedia,
 	            {
 	              overlay: _react2.default.createElement(_Card.CardTitle, { title: this.props.bookName, subtitle: this.props.categoryName })
 	            },
 	            _react2.default.createElement('img', { src: 'http://www.pro-react.com/images/book.jpg' })
 	          ),
-	          _react2.default.createElement(_Card.CardTitle, { title: 'Card title', subtitle: 'Card subtitle' }),
+	          _react2.default.createElement(_Card.CardTitle, { title: 'Book description', subtitle: 'Book content' }),
 	          _react2.default.createElement(
 	            _Card.CardText,
 	            null,
 	            this.props.description
 	          )
+	        ),
+	        _react2.default.createElement(
+	          _List.List,
+	          null,
+	          this.props.readerIds.map(function (readerId) {
+	            return _react2.default.createElement(_List.ListItem, { key: readerId,
+	              primaryText: '{this.props.lookupReader(readerId).name}',
+	              leftAvatar: _react2.default.createElement(_Avatar2.default, { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2000px-Octicons-mark-github.svg.png' }),
+	              rightIcon: _react2.default.createElement(_chatBubble2.default, null)
+	            });
+	          })
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -42627,6 +42624,44 @@
 	} : void 0;
 	exports.default = CardActions;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../process/browser.js */ 3)))
+
+/***/ },
+/* 454 */
+/*!**************************************************************!*\
+  !*** ./~/material-ui/svg-icons/communication/chat-bubble.js ***!
+  \**************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _pure = __webpack_require__(/*! recompose/pure */ 412);
+	
+	var _pure2 = _interopRequireDefault(_pure);
+	
+	var _SvgIcon = __webpack_require__(/*! ../../SvgIcon */ 421);
+	
+	var _SvgIcon2 = _interopRequireDefault(_SvgIcon);
+	
+	function _interopRequireDefault(obj) {
+	  return obj && obj.__esModule ? obj : { default: obj };
+	}
+	
+	var CommunicationChatBubble = function CommunicationChatBubble(props) {
+	  return _react2.default.createElement(_SvgIcon2.default, props, _react2.default.createElement('path', { d: 'M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z' }));
+	};
+	CommunicationChatBubble = (0, _pure2.default)(CommunicationChatBubble);
+	CommunicationChatBubble.displayName = 'CommunicationChatBubble';
+	CommunicationChatBubble.muiName = 'SvgIcon';
+	
+	exports.default = CommunicationChatBubble;
 
 /***/ }
 /******/ ]);

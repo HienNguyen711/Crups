@@ -6,7 +6,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import AppBar from 'material-ui/AppBar';
-import {List, ListItem} from 'material-ui/List';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
@@ -18,6 +17,9 @@ import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 import FontIcon from 'material-ui/FontIcon';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import {List, ListItem} from 'material-ui/List';
+import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+
 
 class Book extends Component {
   componentDidMount() {
@@ -33,29 +35,30 @@ class Book extends Component {
 
        <div className="Book">
       <Card>
-        <div className="panel panel-default">
-          <div className="panel-heading">
-            <h3 className="panel-title">Book description</h3>
-          </div>
-          <div className="panel-body">
-            <div className="book-description">
-
-            </div>
-          </div>
-        </div>
 
     <CardMedia
       overlay={<CardTitle title={this.props.bookName} subtitle={this.props.categoryName} />}
     >
       <img src="http://www.pro-react.com/images/book.jpg" />
     </CardMedia>
-    <CardTitle title="Card title" subtitle="Card subtitle" />
+    <CardTitle title="Book description" subtitle="Book content" />
     <CardText>
       {this.props.description}
     </CardText>
 
       </Card>
+      <List>
 
+       {this.props.readerIds.map(readerId =>
+        <ListItem key={readerId}
+        primaryText="{this.props.lookupReader(readerId).name}"
+        leftAvatar={<Avatar src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2000px-Octicons-mark-github.svg.png" />}
+        rightIcon={<CommunicationChatBubble />}
+      /> )}
+
+
+
+      </List>
         <div className="panel panel-default">
           <div className="panel-heading">
             <h3 className="panel-title">Proposed Readers</h3>
