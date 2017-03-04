@@ -6,7 +6,7 @@ import BookPreview from './BookPreview';
 class App extends React.Component {
   state = {
     pageHeader: 'Crups',
-    books:[]
+    books:this.props.initialBooks
   };
   componentDidMount() {
 
