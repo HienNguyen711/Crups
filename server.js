@@ -15,8 +15,12 @@ server.use(sassMiddleware({
 server.set('view engine', 'ejs');
 
 server.get('/',(req,res) => {
-  res.send('Hello world!');
+  res.render('index',{
+    content:'...'
+  });
 });
+
+
 
 server.listen(config.port, config.host, () => {
   console.info(`Running on port ${config.port}`);
