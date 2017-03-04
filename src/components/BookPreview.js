@@ -13,6 +13,8 @@ class BookPreview extends Component{
         <div className="book-name">
           {this.props.bookName}
         </div>
+  <hr />
+
       </div>
     );
   }

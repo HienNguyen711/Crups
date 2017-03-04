@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
+
 import Dialog from 'material-ui/Dialog';
 import {deepOrange500} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -19,8 +19,10 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 import FlatButton from 'material-ui/FlatButton';
 import {List, ListItem} from 'material-ui/List';
 import CommunicationChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
-
-
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+const style = {
+  marginRight: 20,
+};
 class Book extends Component {
   componentDidMount() {
     this.props.fetchReaders(this.props.readerIds);
@@ -67,7 +69,12 @@ class Book extends Component {
           <div className="panel-body">
             <ul className="list-group">
               {this.props.readerIds.map(readerId =>
+
                 <li key={readerId} className="list-group-item">
+                   <FontIcon
+      className="muidocs-icon-action-home"
+
+    />
                   {this.props.lookupReader(readerId).name}
                 </li>
               )}
@@ -96,10 +103,12 @@ class Book extends Component {
           </div>
         </div>
 
-        <div className="home-link link"
+
+          <FloatingActionButton secondary={true} style={style}
              onClick={this.props.bookListClick}>
-          Return back Book List
-        </div>
+
+Back
+    </FloatingActionButton>
       </div>
     );
   }

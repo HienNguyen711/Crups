@@ -8,7 +8,9 @@ const BookList = ({ books, onBookClick }) => (
         key={bookId}
         onClick={onBookClick}
         {...books[bookId]} />
+
     )}
+
   </div>
 );
 
@@ -18,3 +20,4 @@ BookList.propTypes = {
 };
 
 export default BookList;
+

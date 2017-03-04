@@ -53,8 +53,7 @@ const muiTheme = getMuiTheme({
 
 class App extends React.Component {
    static propTypes = {
-    initialData: React.PropTypes.object.isRequired,
-    children: React.PropTypes.node.isRequired
+    initialData: React.PropTypes.object.isRequired
 
   };
   state = this.props.initialData;
@@ -165,13 +164,11 @@ class App extends React.Component {
         {this.currentContent()}
 
           <RaisedButton
-            label="Super Secret Password"
+            label="See more"
             secondary={true}
           />
 
-           <Paper zDepth={1}>
 
-      </Paper>
       </div>
 
       </MuiThemeProvider>
