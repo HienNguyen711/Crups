@@ -5,7 +5,18 @@ A simple app with MERN - MongoDB,Express,ReactJS,Node
 
 ## Tech used
 + MERN
-+ Material design 
++ Material design
+
+## How to install
++ Clone this repo `git clone <this-repo>` or download as zip file
++ Run `npm install` 
++ Start MongoDB `mongod`
++ Test database `babel-node loadTestData.js`
++ Run `npm start` to start the server 
+
+
+
+
 
 ## Demos
 <img src="dev_process/cap1.PNG">
