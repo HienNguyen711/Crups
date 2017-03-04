@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({message}) => {
   return (
     <h2 className="Header text-center">
-      This is Crups
+        {message}
     </h2>
   );
 };

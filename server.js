@@ -16,7 +16,7 @@ server.set('view engine', 'ejs');
 
 server.get('/',(req,res) => {
   res.render('index',{
-    content:'...'
+    content:'Some thing goes here ... '
   });
 });
 
