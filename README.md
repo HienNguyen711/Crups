@@ -6,6 +6,7 @@ A simple app with MERN - MongoDB,Express,ReactJS,Node
 ## Tech used
 + MERN
 + Material design
++ Isomorphic with server and front-end rendering 
 
 ## How to install
 + Clone this repo `git clone <this-repo>` or download as zip file
